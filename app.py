@@ -77,7 +77,8 @@ if uploaded_file is not None:
             for chunk in response:
                 if chunk.text:
                     full_response += chunk.text
-                    output_placeholder.markdown(full_response, unsafe_allow_html=False)
+                    # Use st.code to standardize font
+                    output_placeholder.code(full_response)
             
             st.write("処理が完了しました。")
 else:
