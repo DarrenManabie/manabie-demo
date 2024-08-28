@@ -24,7 +24,6 @@ HARDCODED_QUESTION = """
                     ## Section16, 平方根の意味と混合, Practice, STEP1, null, (1), 次の数の平方根を求めなさい。, ①, 4, FIB, null, I-No
                     ## Section16, 平方根の意味と混合, Practice, STEP1, null, (1), 次の数の平方根を求めなさい。, ②, 16, FIB, null, I-No
                     ## Section17, 平方根の大小, Practice, STEP2, 次の各組の数の大小を、不等号を使って表しなさい。，(1), \sqrt{7}、\sqrt{6}, FIB, null, I-No
-                    
                     #「回答形式」は「FIB, MCQ, MAQ」の3種類のみです。"FIB"は空欄補充形式、"MCQ"は単一回答の選択式（正答が1つのみ）、"MAQ"は複数回答の選択式（正答が2つ以上）です
                     #「回答オプション」は、FIBの問題には必ず"null"を表記して。MCQ or MAQの問題には、全ての選択肢の内容をカンマで区切って表記して。
                     """
@@ -51,6 +50,13 @@ st.title("教科書からの問題抽出デモ")
 # Get user input (optional)
 user_input = st.text_area("追加の質問を入力してください（オプション）:")
 
+if st.button("Save"):
+    st.session_state['saved_input'] = user_input
+    st.success("Input saved successfully!")
+
+# Retrieve saved input if available
+saved_input = st.session_state.get('saved_input', '')
+
 # Concatenate user input to the hardcoded question if provided
 if user_input:
     HARDCODED_QUESTION += "\n" + user_input
@@ -76,6 +82,3 @@ if uploaded_file is not None:
             st.write("処理が完了しました。")
 else:
     st.write("PDFファイルをアップロードしてください。")
-
-
-
