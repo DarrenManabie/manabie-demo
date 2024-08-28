@@ -16,7 +16,7 @@ model = genai.GenerativeModel('gemini-1.5-pro')
 # Hardcoded question
 HARDCODED_QUESTION = """
                     # この問題集に含まれる問題を、"Section番号, Section名, 問題セクション名, 大問番号, 大問問題文, 中問番号, 中問問題文, 小問番号, 小問問題文, 回答形式, 回答オプション(選択式の場合), 図" のCSVフォーマットで全問題抜け漏れなく忠実に書き出して
-                    # 該当するデータがない場合は"null"を表記して 
+                    # 該当するデータがない場合は"null"を表記して
                     # 全ての数字・数式をLaTex codeで表記して。例：\sqrt{4}
                     # 問題文の中にカンマが含まれる場合は、"、"で出力して（", "で出力しないで）
                     # 問題に図が含まれる場合はそれを「図」の列にI-Yes、ない場合はI-Noと明記して
@@ -28,6 +28,13 @@ HARDCODED_QUESTION = """
                     #「回答形式」は「FIB, MCQ, MAQ」の3種類のみです。"FIB"は空欄補充形式、"MCQ"は単一回答の選択式（正答が1つのみ）、"MAQ"は複数回答の選択式（正答が2つ以上）です
                     #「回答オプション」は、FIBの問題には必ず"null"を表記して。MCQ or MAQの問題には、全ての選択肢の内容をカンマで区切って表記して。
                     """
+
+# Get user input (optional)
+user_input = st.text_area("追加の質問を入力してください（オプション）:")
+
+# Concatenate user input to the hardcoded question if provided
+if user_input:
+    HARDCODED_QUESTION += "\n" + user_input
 
 def process_pdf(uploaded_file):
     # Save the uploaded file temporarily
