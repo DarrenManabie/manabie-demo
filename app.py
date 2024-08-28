@@ -45,10 +45,10 @@ def process_pdf(uploaded_file):
     return response
 
 # Streamlit app
-st.title("教科書からの問題抽出デモ")
+st.title("教科書からの問題抽出デモ (All)")
 
 # Get user input (optional)
-user_input = st.text_area("追加の質問を入力してください（オプション）:")
+user_input = st.text_area("追加の情報を入力してください（オプション）:")
 
 if st.button("Save"):
     st.session_state['saved_input'] = user_input
