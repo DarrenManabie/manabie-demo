@@ -47,6 +47,9 @@ def process_pdf(uploaded_file):
 # Streamlit app
 st.title("教科書からの問題抽出デモ")
 
+# File uploader
+uploaded_file = st.file_uploader("", type="pdf")
+
 # Get user input (optional)
 user_input = st.text_area("追加の質問を入力してください（オプション）:")
 
@@ -60,9 +63,6 @@ saved_input = st.session_state.get('saved_input', '')
 # Concatenate user input to the hardcoded question if provided
 if user_input:
     HARDCODED_QUESTION += "\n" + user_input
-
-# File uploader
-uploaded_file = st.file_uploader("", type="pdf")
 
 if uploaded_file is not None:
     if st.button("Execute Process"):
